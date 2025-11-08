@@ -1,0 +1,33 @@
+{
+  "plan": {
+    "days": [
+      {
+        "title": "Calgary & Drumheller",
+        "stops": [
+          {"name":"Calgary Tower","why":"360° city views","source":"https://www.travelalberta.com"},
+          {"name":"Glenbow at The Edison","why":"Culture & exhibits","source":"https://www.travelalberta.com"},
+          {"name":"Royal Tyrrell Museum (Drumheller)","why":"World-class dinosaurs","source":"https://www.travelalberta.com"}
+        ]
+      },
+      {
+        "title": "Banff National Park",
+        "stops": [
+          {"name":"Lake Louise Lakeshore","why":"Iconic turquoise water","source":"https://www.pc.gc.ca"},
+          {"name":"Banff Gondola","why":"Summit views & boardwalk","source":"https://www.banfflakelouise.com"},
+          {"name":"Banff Avenue","why":"Shops & local food","source":"https://www.banfflakelouise.com"}
+        ]
+      },
+      {
+        "title": "Canmore & Kananaskis",
+        "stops": [
+          {"name":"Grassi Lakes Trail","why":"Easy hike with emerald pools","source":"https://www.travelalberta.com"},
+          {"name":"Canmore Main Street","why":"Cafés & galleries","source":"https://www.travelalberta.com"},
+          {"name":"Kananaskis Nordic Spa (view only)","why":"Relax vibe (booking req.)","source":"https://kananaskisnordicspa.com"}
+        ]
+      }
+    ],
+    "notes": ["Demo mode: no live weather."]
+  },
+  "weatherNote": "",
+  "checkedAtMST": "Demo - local file"
+}
