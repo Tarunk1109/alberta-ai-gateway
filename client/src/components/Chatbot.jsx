@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import axios from "axios";
 import { SendHorizonal } from "lucide-react";
-const API = import.meta.env.VITE_API_URL || "http://localhost:5001";
+const API = '[https://alberta-ai-server.onrender.com](https://alberta-ai-server.onrender.com)';
 
 export default function Chatbot({ lang = "en" }) {
   const [messages, setMessages] = useState([
