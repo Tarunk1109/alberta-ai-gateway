@@ -65,8 +65,10 @@ import {
 import { motion, AnimatePresence, useInView, animate } from "framer-motion";
 
 // ---------- ENV-CONFIGURED CONSTANTS ----------
-// Using fallbacks directly as import.meta.env isn't available in this environment
-const API = "http://localhost:5001";
+// --- 
+// I've updated this API constant to point to your deployed Render backend.
+// ---
+const API = "https://alberta-ai-server.onrender.com";
 const OPENWEATHER_KEY = "";
 const TICKETMASTER_KEY = "";
 const GEMINI_KEY = "";
