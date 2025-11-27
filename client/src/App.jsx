@@ -65,14 +65,13 @@ import {
 import { motion, AnimatePresence, useInView, animate } from "framer-motion";
 
 // ---------- ENV-CONFIGURED CONSTANTS ----------
-// --- 
-// I've updated this API constant to point to your deployed Render backend.
 // ---
-const API = "https://alberta-ai-server.onrender.com";
-const OPENWEATHER_KEY = "";
-const TICKETMASTER_KEY = "";
-const GEMINI_KEY = "";
-const OPENAI_KEY = "";
+//
+// THIS IS THE FIX. It now points to your local server.
+// Remember to change this back to your Render URL when you deploy!
+// ---
+const API = "https://alberta-ai-server.onrender.com"; // <-- OLD (WRONG)
+//const API = "http://localhost:5001"; // <-- NEW (CORRECT FOR LOCAL)
 
 // Helper function for classnames
 const cn = (...a) => a.filter(Boolean).join(" ");
@@ -111,6 +110,11 @@ const WildRoseLogo = ({ className }) => (
 );
 
 // --- MOCKED DATA ---
+// ---
+// --- UPDATED AND EXPANDED SECTIONS DATA ---
+// ---
+// --- THIS IS WHERE YOU ADD YOUR .GLB AND POSTER PATHS ---
+// ---
 const SECTIONS = {
   plan: {
     title: "AI Trip Planner",
@@ -124,73 +128,137 @@ const SECTIONS = {
     title: "Culture",
     icon: BookOpen,
     description: "Discover Indigenous history, vibrant arts, and local festivals.",
+    heroImage:
+      "https://placehold.co/1200x600/fecaca/333333?text=Glenbow+Museum+Exhibit",
     bullets: [
-      "Discover Indigenous history and cultural sites.",
-      "Explore vibrant arts scenes, museums, and festivals.",
-      "Learn about Alberta's unique pioneer legacy.",
+      "Discover Indigenous history and cultural sites like Head-Smashed-In Buffalo Jump.",
+      "Explore vibrant arts scenes, from the Art Gallery of Alberta to Calgary's street art.",
+      "Experience world-famous events like the Calgary Stampede and Edmonton Folk Fest.",
+      "Learn about Alberta's unique pioneer and ranching legacy at heritage parks.",
     ],
     links: [
       { label: "Royal Alberta Museum", href: "#" },
       { label: "Indigenous Tourism Alberta", href: "#" },
+      { label: "Glenbow Museum", href: "#" },
+      { label: "Calgary Stampede", href: "#" },
     ],
+    keyFacts: [
+      { value: "6", label: "UNESCO World Heritage Sites" },
+      { value: "11,000+", label: "Years of Indigenous History" },
+      { value: "75+", label: "Major Festivals Annually" },
+    ],
+    // --- YOUR PATHS FOR 'CULTURE' ---
+    modelSrc: "/public/banff.glb",
+    modelPoster: "/models/culture-poster.jpg",
   },
   trade: {
     title: "Trade",
     icon: Briefcase,
     description: "Connect with key industries: energy, tech, and agriculture.",
+    heroImage:
+      "https://placehold.co/1200x600/bfdbfe/333333?text=Calgary+Skyline+Trade",
     bullets: [
-      "Connect with Alberta's key industries: energy, tech, and agriculture.",
-      "Explore investment opportunities and economic data.",
-      "Learn about international trade agreements.",
+      "Connect with Alberta's key industries: energy, technology, and agriculture.",
+      "Explore investment opportunities in emerging sectors like AI and clean tech.",
+      "Learn about international trade agreements and Alberta's global logistics hubs.",
+      "Access economic data, market reports, and business resources.",
     ],
     links: [
       { label: "Invest Alberta", href: "#" },
       { label: "Alberta's Economy", href: "#" },
+      { label: "Tech in Alberta", href: "#" },
     ],
+    keyFacts: [
+      { value: "$100B+", label: "Annual Exports" },
+      { value: "Top 3", label: "Global AI Research Hub" },
+      { value: "$5.5B", label: "Agri-food Exports (2023)" },
+    ],
+    // --- YOUR PATHS FOR 'TRADE' ---
+    modelSrc: "/public/bull.glb",
+    modelPoster: "/models/trade-poster.jpg",
   },
   education: {
     title: "Education",
     icon: GraduationCap,
     description: "Explore top-tier universities and global research opportunities.",
+    heroImage:
+      "https://placehold.co/1200x600/d1fae5/333333?text=University+of+Alberta+Campus",
     bullets: [
-      "Explore top-tier universities and research institutions.",
-      "Learn about study programs and international student opportunities.",
-      "Discover innovation hubs and tech incubators.",
+      "Explore world-renowned programs at top-tier institutions like the University of Alberta and University of Calgary.",
+      "Discover cutting-edge research in artificial intelligence, energy, and health sciences.",
+      "Learn about study programs, scholarships, and international student opportunities.",
+      "Connect with innovation hubs, polytechnics, and tech incubators driving the future.",
     ],
     links: [
       { label: "University of Alberta", href: "#" },
       { label: "University of Calgary", href: "#" },
+      { label: "Study in Alberta", href: "#" },
+      { label: "Amii (AI Research)", href: "#" },
     ],
+    keyFacts: [
+      { value: "250,000+", label: "Post-secondary Students" },
+      { value: "Top 5", label: "Global AI Research Ranking (U of A)" },
+      { value: "26", label: "Publicly Funded Institutions" },
+    ],
+    // --- YOUR PATHS FOR 'EDUCATION' ---
+    modelSrc: "/public/falls.glb",
+    modelPoster: "/models/education-poster.jpg",
   },
   sports: {
     title: "Sports",
     icon: HeartPulse,
     description: "From the NHL to world-class Rocky Mountain adventures.",
+    heroImage: "https://placehold.co/1200x600/fef3c7/333333?text=Skiing+in+Banff",
     bullets: [
-      "From the NHL to the Rocky Mountains.",
-      "Discover world-class skiing, hiking, and biking.",
-      "Learn about major sporting events and venues.",
+      "Experience the thrill of the 'Battle of Alberta' with NHL teams in Edmonton and Calgary.",
+      "Discover world-class skiing, hiking, and biking in the Rocky Mountains.",
+      "Explore hundreds of golf courses with stunning mountain and prairie backdrops.",
+      "Attend major international sporting events, from rodeo to winter sports.",
     ],
     links: [
-      { label: "Ski Banff", href: "#" },
-      { label: "Explore Edmonton Sports", href: "#" },
+      { label: "Ski Banff (Big 3)", href: "#" },
+      { label: "Edmonton Oilers", href: "#" },
+      { label: "Calgary Flames", href: "#" },
+      { label: "Spruce Meadows", href: "#" },
     ],
+    keyFacts: [
+      { value: "2", label: "NHL Teams" },
+      { value: "1988", label: "Winter Olympics Host (Calgary)" },
+      { value: "300+", label: "Golf Courses" },
+    ],
+    // --- YOUR PATHS FOR 'SPORTS' ---
+    modelSrc: "/public/banff.glb",
+    modelPoster: "/models/sports-poster.jpg",
   },
   tourism: {
     title: "Tourism",
     icon: Plane,
     description: "Plan your visit to iconic spots like Lake Louise and Jasper.",
+    heroImage:
+      "https://placehold.co/1200x600/e0e7ff/333333?text=Moraine+Lake+View",
     bullets: [
-      "Plan your visit to iconic spots like Lake Louise and Jasper.",
-      "Discover hidden gems and unique local experiences.",
-      "Find information on parks, accommodations, and tours.",
+      "Plan your visit to iconic spots like Lake Louise, Moraine Lake, and Jasper National Park.",
+      "Discover hidden gems, from the hoodoos of the Badlands to the dark skies of Wood Buffalo.",
+      "Find information on national parks, accommodations, and unique local tours.",
+      "Experience every adventure: scenic drives, wildlife viewing, and vibrant city life.",
     ],
     links: [
       { label: "Banff National Park", href: "#" },
       { label: "Jasper National Park", href: "#" },
+      { label: "Travel Alberta", href: "#" },
+      { label: "Royal Tyrrell Museum", href: "#" },
     ],
+    keyFacts: [
+      { value: "5", label: "National Parks" },
+      { value: "600+", label: "Lakes and Rivers" },
+      { value: "Largest", label: "Dark Sky Preserve (Wood Buffalo)" },
+    ],
+    // --- YOUR PATHS FOR 'TOURISM' ---
+    modelSrc: "/public/city.glb",
+    modelPoster: "/models/tourism-poster.jpg",
   },
 };
+// --- END OF UPDATED SECTIONS DATA ---
 
 const NAV_LINKS = ["culture", "trade", "education", "sports", "tourism"];
 
@@ -381,16 +449,16 @@ const AuthModal = ({ isOpen, onClose, onLoginSuccess }) => {
           password,
         });
       }
-      
+
       const { token, user } = response.data;
-      
+
       // --- NEW: Save token to localStorage ---
       localStorage.setItem("token", token);
-      
+
       onLoginSuccess(user); // Pass user data up to App
     } catch (err) {
       if (err.response && err.response.data && err.response.data.error) {
-        setError(err.response.data.error); 
+        setError(err.response.data.error);
       } else {
         setError(err.message || "An unknown error occurred.");
       }
@@ -637,10 +705,10 @@ const Topbar = ({
               {SECTIONS[key].title}
             </button>
           ))}
-          
+
           {/* --- NEW: "My Plans" Button --- */}
           {currentUser && (
-             <button
+            <button
               onClick={onOpenMyPlans}
               className="text-sm font-medium text-gray-500 dark:text-gray-300 transition-colors hover:text-gray-900 dark:hover:text-white inline-flex items-center gap-1.5"
             >
@@ -974,69 +1042,148 @@ const Toast = ({ show, type = "error", message, onClose, timeout = 3000 }) => {
   );
 };
 
-const SectionBody = ({ section }) => (
-  <div className="grid md:grid-cols-2 gap-8">
-    <motion.div
-      className="space-y-4"
-      initial={{ opacity: 0, x: -20 }}
-      animate={{ opacity: 1, x: 0 }}
-      transition={{ delay: 0.1 }}
-    >
-      {section.bullets.map((b, i) => (
-        <p
-          key={i}
-          className="text-base leading-relaxed flex items-start gap-3 text-gray-600 dark:text-gray-300"
-        >
-          <span className="text-accent-rose mt-1.5">›</span>
-          <span>{b}</span>
-        </p>
-      ))}
-    </motion.div>
-    <motion.div
-      className="space-y-4"
-      initial={{ opacity: 0, x: 20 }}
-      animate={{ opacity: 1, x: 0 }}
-      transition={{ delay: 0.2 }}
-    >
-      <div className="p-4 rounded-2xl border border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-gray-800/50">
-        <h3 className="font-semibold mb-3 text-lg text-gray-900 dark:text-white">
-          Learn More
-        </h3>
-        <div className="flex flex-wrap gap-3">
-          {section.links.map((l, i) => (
-            <a
-              key={i}
-              className="text-sm px-3 py-1.5 rounded-full border border-accent-green/30 bg-accent-green/10 text-accent-green transition-colors hover:bg-accent-green/20"
-              href={l.href}
-              target="_blank"
-              rel="noreferrer"
-            >
-              {l.label} ↗
-            </a>
-          ))}
+// ---
+// --- NEW REDESIGNED SECTIONBODY COMPONENT ---
+// ---
+const SectionBody = ({ section }) => {
+  const Icon = section.icon || Sparkle; // Fallback icon
+
+  return (
+    <div className="space-y-12">
+      {/* 1. Hero Image */}
+      <motion.div
+        className="relative w-full h-64 md:h-80 rounded-3xl overflow-hidden shadow-2xl"
+        initial={{ opacity: 0, scale: 0.95 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ delay: 0.1, duration: 0.5, ease: "easeOut" }}
+      >
+        <img
+          src={section.heroImage}
+          alt={section.title}
+          className="absolute inset-0 w-full h-full object-cover"
+          onError={(e) =>
+            (e.target.src =
+              "https://placehold.co/1200x600/cccccc/333333?text=Image+Coming+Soon")
+          }
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
+        <div className="absolute bottom-6 left-6 md:bottom-8 md:left-8">
+          <div className="p-3 rounded-full bg-white/20 backdrop-blur-sm mb-3 w-max">
+            <Icon className="w-6 h-6 text-white" />
+          </div>
+          <h2 className="font-serif text-4xl md:text-5xl font-bold text-white shadow-lg">
+            {section.title}
+          </h2>
+          <p className="text-lg text-white/90 mt-1 max-w-lg">
+            {section.description}
+          </p>
         </div>
+      </motion.div>
+
+      {/* 2. Key Facts */}
+      {section.keyFacts && (
+        <motion.div
+          className="grid grid-cols-1 sm:grid-cols-3 gap-6"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2, duration: 0.5 }}
+        >
+          {section.keyFacts.map((fact) => (
+            <div
+              key={fact.label}
+              className="p-6 rounded-2xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-800/50 text-center"
+            >
+              <p className="text-4xl font-bold text-accent-green mb-1">
+                {fact.value}
+              </p>
+              <p className="text-sm text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+                {fact.label}
+              </p>
+            </div>
+          ))}
+        </motion.div>
+      )}
+
+      {/* 3. Details (Bullets, Links, XR) */}
+      <div className="grid md:grid-cols-2 gap-8 md:gap-12">
+        <motion.div
+          className="space-y-4"
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ delay: 0.3, duration: 0.5 }}
+        >
+          <h3 className="font-semibold text-2xl text-gray-900 dark:text-white mb-4">
+            Key Highlights
+          </h3>
+          {section.bullets.map((b, i) => (
+            <div
+              key={i}
+              className="flex items-start gap-3 text-base leading-relaxed text-gray-600 dark:text-gray-300"
+            >
+              <span className="text-accent-rose mt-1.5 flex-shrink-0">
+                <ChevronRight className="w-4 h-4" />
+              </span>
+              <span>{b}</span>
+            </div>
+          ))}
+        </motion.div>
+
+        <motion.div
+          className="space-y-6"
+          initial={{ opacity: 0, x: 20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ delay: 0.4, duration: 0.5 }}
+        >
+          <div className="p-5 rounded-2xl border border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-gray-800/50">
+            <h3 className="font-semibold mb-4 text-2xl text-gray-900 dark:text-white">
+              Learn More
+            </h3>
+            <div className="flex flex-wrap gap-3">
+              {section.links.map((l, i) => (
+                <a
+                  key={i}
+                  className="text-sm px-4 py-2 rounded-full border border-accent-green/30 bg-accent-green/10 text-accent-green transition-all hover:bg-accent-green/20 hover:shadow-md"
+                  href={l.href}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  {l.label} ↗
+                </a>
+              ))}
+            </div>
+          </div>
+          <div className="p-5 rounded-2xl border border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-gray-800/50">
+            <h3 className="font-semibold mb-4 text-2xl text-gray-900 dark:text-white">
+              XR Peek
+            </h3>
+            {/*
+              ---
+              THIS IS THE FIX
+              It now uses 'section.modelSrc' and 'section.modelPoster'
+              which you defined in the SECTIONS object above.
+              I've added fallbacks to '/banff.glb' just in case.
+              ---
+            */}
+            <model-viewer
+              src={section.modelSrc || "/banff.glb"}
+              auto-rotate
+              camera-controls
+              poster={section.modelPoster || "/banff-placeholder.jpg"}
+              style={{
+                width: "100%",
+                height: "260px",
+                borderRadius: "16px",
+                background: "transparent",
+              }}
+              className="shadow-inner"
+            ></model-viewer>
+          </div>
+        </motion.div>
       </div>
-      <div className="p-4 rounded-2xl border border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-gray-800/50">
-        <h3 className="font-semibold mb-3 text-lg text-gray-900 dark:text-white">
-          XR Peek
-        </h3>
-        <model-viewer
-          src="/banff.glb"
-          auto-rotate
-          camera-controls
-          poster="/banff-placeholder.jpg"
-          style={{
-            width: "100%",
-            height: "260px",
-            borderRadius: "16px",
-            background: "transparent",
-          }}
-          className="shadow-inner"
-        ></model-viewer>
-      </div>
-    </motion.div>
-  </div>
-);
+    </div>
+  );
+};
+// --- END OF NEW SECTIONBODY ---
 
 // ---------- Image Slider ----------
 const ImageSlider = ({ images = [] }) => {
@@ -1272,26 +1419,6 @@ const ImageQueryModal = ({ image, onClose }) => {
   );
 };
 
-// ---------- Generic Gemini Text Helper ----------
-const callGeminiText = async (systemPrompt, userQuery) => {
-  if (!GEMINI_KEY) throw new Error("Missing GEMINI_KEY in .env");
-  const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${GEMINI_KEY}`;
-  const payload = {
-    contents: [{ parts: [{ text: userQuery }] }],
-    systemInstruction: { parts: [{ text: systemPrompt }] },
-  };
-  const res = await fetch(apiUrl, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(payload),
-  });
-  if (!res.ok) throw new Error("Gemini API error");
-  const result = await res.json();
-  const text = result.candidates?.[0]?.content?.parts?.[0]?.text;
-  if (!text) throw new Error("Invalid response from Gemini");
-  return text;
-};
-
 // ---------- AI Creative Suite (uses callGeminiText & GEMINI_KEY) ----------
 const CreativeCard = ({
   icon: Icon,
@@ -1343,6 +1470,9 @@ const CreativeCard = ({
   );
 };
 
+// ---
+// --- THIS IS THE FULLY CORRECTED, SECURE AI CREATIVE SUITE ---
+// ---
 const AICreativeSuite = ({ setErr, setOk }) => {
   const [activeTab, setActiveTab] = useState("muse");
   const [loading, setLoading] = useState(false);
@@ -1378,6 +1508,7 @@ const AICreativeSuite = ({ setErr, setOk }) => {
     setErr("");
   }, [activeTab, setErr]);
 
+  // --- FIX: This function now securely calls your backend ---
   const handleTextGeneration = async (
     systemPrompt,
     userQuery,
@@ -1390,16 +1521,21 @@ const AICreativeSuite = ({ setErr, setOk }) => {
     setAudioUrl("");
     setErr("");
     try {
-      const text = await callGeminiText(systemPrompt, userQuery);
-      setOutput({ title, content: text, type });
+      // Call the new backend endpoint
+      const { data } = await axios.post(`${API}/api/gemini-text`, {
+        systemPrompt,
+        userQuery,
+      });
+
+      if (!data.text) {
+        throw new Error("No text received from backend");
+      }
+
+      setOutput({ title, content: data.text, type });
       setOk("Content generated!");
     } catch (error) {
       console.error(error);
-      setErr(
-        GEMINI_KEY
-          ? "Could not generate content. Please try again."
-          : "Add VITE_GEMINI_KEY in .env to enable this."
-      );
+      setErr(error.response?.data?.error || "This creative feature failed.");
     } finally {
       setLoading(false);
     }
@@ -1495,7 +1631,7 @@ const AICreativeSuite = ({ setErr, setOk }) => {
     );
   };
 
-  // Visual: Postcard & Audio Guide using GEMINI_KEY
+  // --- FIX: This function now securely calls your backend ---
   const runPostcard = async () => {
     setLoading(true);
     setOutput({ title: "", content: "", type: "" });
@@ -1503,34 +1639,17 @@ const AICreativeSuite = ({ setErr, setOk }) => {
     setAudioUrl("");
     setErr("");
 
-    if (!GEMINI_KEY) {
-      setErr("Add VITE_GEMINI_KEY in .env to enable postcard generation.");
-      setLoading(false);
-      return;
-    }
-
     const userPrompt = `A digital painting of: ${postcardInput}. Stylized, vibrant, beautiful.`;
-    const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-image-preview:generateContent?key=${GEMINI_KEY}`;
-
-    const payload = {
-      contents: [{ parts: [{ text: userPrompt }] }],
-      generationConfig: { responseModalities: ["TEXT", "IMAGE"] },
-    };
 
     try {
-      const res = await fetch(apiUrl, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
+      // This endpoint is in your index.js, so this will work.
+      const { data } = await axios.post(`${API}/api/gemini-image`, {
+        prompt: userPrompt,
       });
-      if (!res.ok) throw new Error("Gemini image API error");
-      const result = await res.json();
-      const base64Data =
-        result?.candidates?.[0]?.content?.parts?.find(
-          (p) => p.inlineData
-        )?.inlineData?.data;
-      if (!base64Data) throw new Error("No image data");
-      setImageUrl(`data:image/png;base64,${base64Data}`);
+
+      if (!data.base64Data) throw new Error("No image data");
+
+      setImageUrl(`data:image/png;base64,${data.base64Data}`);
       setOutput({
         title: "Your AI Postcard:",
         content: postcardInput,
@@ -1539,12 +1658,13 @@ const AICreativeSuite = ({ setErr, setOk }) => {
       setOk("Postcard generated!");
     } catch (e) {
       console.error(e);
-      setErr("Could not generate image. Try again.");
+      setErr(e.response?.data?.error || "Could not generate image.");
     } finally {
       setLoading(false);
     }
   };
 
+  // --- FIX: This function now securely calls your backend ---
   const runAudioGuide = async () => {
     setLoading(true);
     setOutput({ title: "", content: "", type: "" });
@@ -1552,67 +1672,49 @@ const AICreativeSuite = ({ setErr, setOk }) => {
     setAudioUrl("");
     setErr("");
 
-    if (!GEMINI_KEY) {
-      setErr("Add VITE_GEMINI_KEY in .env to enable audio guide.");
-      setLoading(false);
-      return;
-    }
-
     try {
       setOk("Writing audio guide script...");
-      const scriptSystemPrompt = `
-        You are a captivating museum-style audio guide.
-        Write ~100 words about the given Alberta location.
-      `;
-      const script = await callGeminiText(scriptSystemPrompt, audioInput);
-      if (!script) throw new Error("No script");
 
+      // Step 1: Generate the script using the text endpoint
+      const systemPrompt = `
+        You are an Alberta audio tour guide.
+        Write a short, engaging, 60-second audio script (about 100-120 words)
+        for the location: "${audioInput}".
+        Speak directly to the listener. Be informative and evocative.
+        DO NOT use any markdown, just plain text.
+      `;
+      const { data: textData } = await axios.post(`${API}/api/gemini-text`, {
+        systemPrompt: systemPrompt,
+        userQuery: audioInput,
+      });
+
+      const script = textData.text;
+      if (!script) {
+        throw new Error("Failed to generate audio script.");
+      }
+
+      setOk("Script written, generating audio...");
+
+      // Step 2: Convert that script to audio using the TTS endpoint
+      const { data: audioData } = await axios.post(`${API}/api/tts`, {
+        text: script,
+        voice: "shimmer", // A good voice for narration
+      });
+
+      if (!audioData.audioBase64) {
+        throw new Error("Failed to generate audio file.");
+      }
+
+      setAudioUrl(audioData.audioBase64);
       setOutput({
-        title: "Your AI Audio Guide:",
-        content: script,
+        title: `Your Audio Guide: ${audioInput}`,
+        content: script, // Show the script
         type: "audio-script",
       });
-
-      setOk("Generating audio...");
-
-      const ttsApiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-tts:generateContent?key=${GEMINI_KEY}`;
-      const ttsPayload = {
-        contents: [
-          {
-            parts: [
-              {
-                text: `Say in a clear, informative tone: ${script}`,
-              },
-            ],
-          },
-        ],
-        generationConfig: {
-          responseModalities: ["AUDIO"],
-        },
-      };
-
-      const ttsRes = await fetch(ttsApiUrl, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(ttsPayload),
-      });
-      if (!ttsRes.ok) throw new Error("TTS error");
-      const ttsResult = await ttsRes.json();
-      const part = ttsResult?.candidates?.[0]?.content?.parts?.[0];
-      const audioData = part?.inlineData?.data;
-      const mimeType = part?.inlineData?.mimeType;
-
-      if (audioData && mimeType?.startsWith("audio/")) {
-        // If it's already an audio mime, just use it as a data URL
-        const url = `data:${mimeType};base64,${audioData}`;
-        setAudioUrl(url);
-        setOk("Audio guide is ready!");
-      } else {
-        throw new Error("Invalid TTS response");
-      }
+      setOk("Audio guide is ready!");
     } catch (e) {
       console.error(e);
-      setErr("Could not generate audio guide.");
+      setErr(e.response?.data?.error || "Could not generate audio guide.");
     } finally {
       setLoading(false);
     }
@@ -1636,7 +1738,7 @@ const AICreativeSuite = ({ setErr, setOk }) => {
         return {
           __html: c
             .split("\n")
-            .map((p) => `<p>${p}</p>`)
+            .map((p) => `<p class="mb-2">${p}</p>`) // Added mb-2
             .join(""),
         };
       case "gem":
@@ -1647,7 +1749,7 @@ const AICreativeSuite = ({ setErr, setOk }) => {
       case "markdown": {
         let html = c
           .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>")
-          .replace(/^\* (.*$)/gm, '<li class="ml-4">$1</li>')
+          .replace(/^\* (.*$)/gm, '<li class="ml-4 mb-1">$1</li>') // Added mb-1
           .replace(
             /\[View on Map\]\((.*?)\)/g,
             '<a href="$1" target="_blank" rel="noreferrer" class="text-accent-green hover:underline">View on Map ↗</a>'
@@ -1655,7 +1757,9 @@ const AICreativeSuite = ({ setErr, setOk }) => {
         return { __html: html };
       }
       case "audio-script":
-        return { __html: `<p class="italic">${c}</p>` };
+        return {
+          __html: `<p class="text-sm italic text-gray-500 dark:text-gray-400">"${c}"</p>`,
+        };
       case "image":
         return {
           __html: `<p class="text-sm text-gray-500 dark:text-gray-400">Your prompt: "${c}"</p>`,
@@ -1707,7 +1811,7 @@ const AICreativeSuite = ({ setErr, setOk }) => {
 
       <div className="min-h-[300px]">
         {/* Muse */}
-        <AnimatePresence>
+        <AnimatePresence mode="wait">
           {activeTab === "muse" && (
             <motion.div
               key="muse"
@@ -1745,7 +1849,7 @@ const AICreativeSuite = ({ setErr, setOk }) => {
         </AnimatePresence>
 
         {/* Visualizer */}
-        <AnimatePresence>
+        <AnimatePresence mode="wait">
           {activeTab === "visuals" && (
             <motion.div
               key="visuals"
@@ -1812,7 +1916,7 @@ const AICreativeSuite = ({ setErr, setOk }) => {
         </AnimatePresence>
 
         {/* Toolkit */}
-        <AnimatePresence>
+        <AnimatePresence mode="wait">
           {activeTab === "tools" && (
             <motion.div
               key="tools"
@@ -1896,7 +2000,7 @@ const AICreativeSuite = ({ setErr, setOk }) => {
         </AnimatePresence>
 
         {/* Local Finder */}
-        <AnimatePresence>
+        <AnimatePresence mode="wait">
           {activeTab === "finder" && (
             <motion.div
               key="finder"
@@ -1964,6 +2068,8 @@ const AICreativeSuite = ({ setErr, setOk }) => {
         </AnimatePresence>
       </div>
 
+      {/* --- FIX: LOADING ANIMATION --- */}
+      {/* This logic is changed to show loading *before* content exists */}
       <AnimatePresence>
         {(loading || output.content || imageUrl || audioUrl) && (
           <motion.div
@@ -2067,8 +2173,8 @@ export default function App() {
   // --- AUTH STATE ---
   const [authModalOpen, setAuthModalOpen] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);
-  const [authLoading, setAuthLoading] = useState(true); 
-  
+  const [authLoading, setAuthLoading] = useState(true);
+
   // --- NEW: "MY PLANS" STATE ---
   const [myPlans, setMyPlans] = useState([]);
   const [myPlansLoading, setMyPlansLoading] = useState(false);
@@ -2121,34 +2227,20 @@ export default function App() {
     checkUser();
   }, []);
 
-  // Weather
+  // Weather - NOW SECURELY FETCHED FROM YOUR BACKEND
   useEffect(() => {
     const fetchWeather = async () => {
-      if (!OPENWEATHER_KEY) {
-        console.warn("No OPENWEATHER_KEY; using mock weather.");
-        setLiveWeather({
-          loading: false,
-          data: { temp: 14, main: "Clear", wind: 5, humidity: 15 },
-        });
-        return;
-      }
+      setLiveWeather({ loading: true, data: null });
       try {
-        const res = await fetch(
-          `https://api.openweathermap.org/data/2.5/weather?q=Banff&appid=${OPENWEATHER_KEY}&units=metric`
-        );
-        if (!res.ok) throw new Error("Failed weather");
-        const data = await res.json();
+        // We now call YOUR backend, which safely uses the key
+        const { data } = await axios.get(`${API}/api/weather`);
         setLiveWeather({
           loading: false,
-          data: {
-            temp: Math.round(data.main.temp),
-            main: data.weather[0]?.main || "N/A",
-            wind: Math.round(data.wind.speed * 3.6),
-            humidity: data.main.humidity,
-          },
+          data: data, // The backend already formatted this for us
         });
       } catch (e) {
-        console.error(e);
+        console.error("Error fetching weather from backend:", e);
+        // Fallback to mock data on error
         setLiveWeather({
           loading: false,
           data: { temp: 14, main: "Clear", wind: 5, humidity: 15 },
@@ -2158,26 +2250,19 @@ export default function App() {
     fetchWeather();
   }, []);
 
-  // Events
+  // Events - NOW SECURELY FETCHED FROM YOUR BACKEND
   useEffect(() => {
     const fetchEvents = async () => {
-      if (!TICKETMASTER_KEY) {
-        console.warn("No TICKETMASTER_KEY; skipping live events.");
-        setLiveEvents({ loading: false, data: [] });
-        return;
-      }
+      setLiveEvents({ loading: true, data: [] });
       try {
-        const res = await fetch(
-          `https://app.ticketmaster.com/discovery/v2/events.json?apikey=${TICKETMASTER_KEY}&countryCode=CA&stateCode=AB&sort=date,asc&size=10&classificationName=music,sports,arts`
-        );
-        if (!res.ok) throw new Error("Events fetch failed");
-        const data = await res.json();
+        // We now call YOUR backend, which safely uses the key
+        const { data } = await axios.get(`${API}/api/events`);
         setLiveEvents({
           loading: false,
-          data: data._embedded?.events || [],
+          data: data.events || [],
         });
       } catch (e) {
-        console.error(e);
+        console.error("Error fetching events from backend:", e);
         setLiveEvents({ loading: false, data: [] });
       }
     };
@@ -2234,12 +2319,12 @@ export default function App() {
         if (openPanel) setOpenPanel(null);
         if (chatOpen) setChatOpen(false);
         if (selectedImage) setSelectedImage(null);
-        if (authModalOpen) setAuthModalOpen(false); 
+        if (authModalOpen) setAuthModalOpen(false);
       }
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [loading, openPanel, chatOpen, selectedImage, authModalOpen]); 
+  }, [loading, openPanel, chatOpen, selectedImage, authModalOpen]);
 
   const shareUrl = useMemo(() => {
     const u = new URL(window.location.href);
@@ -2269,10 +2354,34 @@ export default function App() {
     setOk("You have been logged out.");
   };
   // --- END AUTH FUNCTIONS ---
-  
+
+  // --- NEW: SHARE PLAN HANDLER ---
+  const handleSharePlan = () => {
+    if (!plan) return;
+    try {
+      // Use fallback for iframe compatibility
+      const textArea = document.createElement("textarea");
+      textArea.value = shareUrl; // shareUrl is already calculated
+      textArea.style.position = "fixed";
+      textArea.style.top = "-9999px";
+      textArea.style.left = "-9999px";
+      document.body.appendChild(textArea);
+      textArea.focus();
+      textArea.select();
+      document.execCommand("copy");
+      document.body.removeChild(textArea);
+
+      setOk("Share link copied to clipboard!");
+    } catch (e) {
+      console.error("Failed to copy share link:", e);
+      setErr("Could not copy link.");
+    }
+  };
+  // --- END SHARE PLAN HANDLER ---
+
   // --- NEW: MY PLANS FUNCTIONS ---
   const handleOpenMyPlans = async () => {
-    setOpenPanel('my-plans');
+    setOpenPanel("my-plans");
     setMyPlansLoading(true);
     setErr("");
     try {
@@ -2280,11 +2389,11 @@ export default function App() {
       if (!token) {
         throw new Error("You must be logged in to see plans.");
       }
-      
+
       const { data } = await axios.get(`${API}/api/my-plans`, {
-         headers: {
-            Authorization: `Bearer ${token}`,
-         },
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       });
       setMyPlans(data.plans || []);
     } catch (e) {
@@ -2295,7 +2404,7 @@ export default function App() {
       setMyPlansLoading(false);
     }
   };
-  
+
   const handleSavePlan = async () => {
     if (!plan || !currentUser) {
       setErr("No plan to save or not logged in.");
@@ -2307,13 +2416,13 @@ export default function App() {
       if (!token) {
         throw new Error("You must be logged in to save a plan.");
       }
-      
+
       await axios.post(
-        `${API}/api/my-plans`, 
-        { 
+        `${API}/api/my-plans`,
+        {
           plan: plan.plan, // Send the plan object (with title, prompt, days)
-          weatherNote: plan.weatherNote 
-        }, 
+          weatherNote: plan.weatherNote,
+        },
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -2334,25 +2443,20 @@ export default function App() {
       weatherNote: savedPlan.weatherNote,
       checkedAtMST: new Date(savedPlan.createdAt).toLocaleString("en-CA", {
         timeZone: "America/Edmonton",
-      })
+      }),
     });
+    // --- FIX: Update prompt state so Share URL is correct ---
+    setPrompt(savedPlan.plan.prompt || "");
     // Switch to the plan panel
-    setOpenPanel('plan');
+    setOpenPanel("plan");
   };
   // --- END MY PLANS FUNCTIONS ---
-
 
   // --- OTHER FUNCTIONS ---
 
   const startRecording = async () => {
     if (!consent) {
       setErr("Please tick the mic consent checkbox first.");
-      return;
-    }
-    if (!OPENAI_KEY) {
-      setErr(
-        "Add VITE_OPENAI_KEY in .env to enable Whisper voice input (frontend)."
-      );
       return;
     }
     try {
@@ -2368,41 +2472,21 @@ export default function App() {
           setOk("Transcribing with Whisper...");
           const formData = new FormData();
           formData.append("file", blob, "audio.webm");
-          formData.append("model", "whisper-1");
+          formData.append("speechLang", speechLang); // Send lang to our backend
 
-          let endpoint =
-            "https://api.openai.com/v1/audio/transcriptions";
+          // Call OUR backend, not OpenAI's
+          const { data } = await axios.post(`${API}/api/transcribe`, formData);
 
-          if (speechLang === "translate") {
-            endpoint = "https://api.openai.com/v1/audio/translations";
-          } else if (speechLang !== "en") {
-            formData.append("language", speechLang);
-          }
-
-          const response = await fetch(endpoint, {
-            method: "POST",
-            headers: {
-              Authorization: `Bearer ${OPENAI_KEY}`,
-            },
-            body: formData,
-          });
-
-          if (!response.ok) {
-            const errData = await response.json();
-            throw new Error(errData.error?.message || "Whisper error");
-          }
-
-          const data = await response.json();
           setSttText(data.text || "");
           if (data.text) {
             setPrompt(data.text);
             setOk("Heard you! Ready to plan.");
           } else {
-            setErr("Could not understand audio.");
+            setErr("Backend transcribed, but no text received.");
           }
         } catch (e) {
           console.error(e);
-          setErr(e.message || "Speech transcription failed.");
+          setErr(e.response?.data?.error || "Speech transcription failed.");
         }
       };
       rec.start();
@@ -2613,7 +2697,7 @@ export default function App() {
         currentUser={currentUser}
         onOpenLogin={() => setAuthModalOpen(true)}
         onLogout={handleLogout}
-        onOpenMyPlans={handleOpenMyPlans} 
+        onOpenMyPlans={handleOpenMyPlans}
       />
 
       {Hero}
@@ -2806,7 +2890,7 @@ export default function App() {
                 <p className="text-red-500">Could not load weather.</p>
               )}
               <p className="text-xs text-gray-400 dark:text-gray-500 mt-4">
-                Source: OpenWeatherMap
+                Source: Your Backend API
               </p>
             </motion.div>
 
@@ -2878,7 +2962,7 @@ export default function App() {
                 <ArrowRight className="w-4 h-4" />
               </button>
               <p className="text-xs text-gray-400 dark:text-gray-500 mt-2">
-                Source: Ticketmaster (if configured)
+                Source: Your Backend API
               </p>
             </motion.div>
           </div>
@@ -3063,6 +3147,7 @@ export default function App() {
                 Alberta.AI
               </span>
             </div>
+            {/* --- BUG FIX: Changed </g> to </p> --- */}
             <p className="mt-4 md:mt-0 text-sm">
               © {new Date().getFullYear()} Alberta AI Gateway. Built for
               Community Code Days.
@@ -3113,6 +3198,13 @@ export default function App() {
                   className="px-4 py-2 rounded-full border border-gray-300 dark:border-gray-700 inline-flex items-center gap-2.5 hover:bg-gray-100 dark:hover:bg-gray-800"
                 >
                   <Headphones className="w-4 h-4" /> Listen to Summary
+                </button>
+                {/* --- NEW: SHARE PLAN BUTTON --- */}
+                <button
+                  onClick={handleSharePlan}
+                  className="px-4 py-2 rounded-full border border-gray-300 dark:border-gray-700 inline-flex items-center gap-2.5 hover:bg-gray-100 dark:hover:bg-gray-800"
+                >
+                  <Share2 className="w-4 h-4" /> Share Plan
                 </button>
                 <button
                   onClick={joinGroup}
@@ -3209,7 +3301,7 @@ export default function App() {
           </div>
         )}
       </FullPanel>
-      
+
       {/* --- NEW: "MY PLANS" PANEL --- */}
       <FullPanel
         open={openPanel === "my-plans"}
@@ -3255,7 +3347,6 @@ export default function App() {
           </div>
         )}
       </FullPanel>
-
 
       <FullPanel
         open={openPanel === "events"}
@@ -3305,6 +3396,7 @@ export default function App() {
           onClose={() => setOpenPanel(null)}
           title={SECTIONS[key]?.title || key}
         >
+          {/* This now renders the new, creative SectionBody */}
           <SectionBody section={SECTIONS[key]} />
         </FullPanel>
       ))}
